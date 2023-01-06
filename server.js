@@ -3,19 +3,19 @@ const express = require("express");
 const app = express();
  
 app.listen(3000, () => {
- console.log(`Array med böcker http://localhost:3000/products`);
+  console.log(`Array med böcker http://localhost:3000/products`);
 });
  
-const bodyParser = require("body-parser"); //denna annars crashar det
+const bodyParser = require("body-parser"); 
  
 let products = require("./products.json");
  
-//alla produkter Get KLAR
+//GET - alla produkter 
 app.get("/products", (req, res) => {
  res.json(products);
 });
  
-// plockar ut ett id KLAR
+// GET - hämtar en spesifik produkt
 app.get("/products/:id", (req, res) => {
  let findProduct = products.find((product) => product.id === (req.params.id));
  if (!findProduct) {
@@ -24,7 +24,7 @@ app.get("/products/:id", (req, res) => {
    res.json(findProduct);
 }});
  
-//skapar ny produkt Create KLAR
+//POST - skapar ny produkt 
 app.post("/products", bodyParser.json(), (req, res) => {
   products.push(req.body);
   save();
@@ -33,11 +33,8 @@ app.post("/products", bodyParser.json(), (req, res) => {
     productInfo: req.body,
   });
  });
- //////////////////////////////PUT/////////////////////////////////////////////
 
-
- 
-//uppdaterar Update-bra
+// PUT - uppdaterar en produkt 
 app.put("/products/:id", bodyParser.json(), (req, res) => {
   products = products.map((product) => {
     if (product.id === req.params.id) {
@@ -54,7 +51,7 @@ app.put("/products/:id", bodyParser.json(), (req, res) => {
   });
  });
  
-const fs = require("fs");
+// const fs = require("fs");
  
 //spara function
 const save = () => {

@@ -1,19 +1,15 @@
-//Testa end-points
- 
-//Hela arrayen med böcker, id, författare, pris, img KLAR
+//Hämtr hela arrayen med alla produkter (böcker) 
 GET http://localhost:3000/products
 ###
  
-//En spesefik produkt KLAR
-GET http://localhost:3000/products/8876220
-//hittar inte id data saknas
+//Hämtar en spesifik produkt - om inte produkten finns svarar APIét med 404
+GET http://localhost:3000/products/1234567
 ###
  
-//Lägg till ny produkt KLAR
+//Lägger till en ny produkt 
 POST  http://localhost:3000/products
 Content-Type: application/json
  
-//läggs till i json korrekt
 {
  "id":"1823998",
  "Titel": "Ny bok1",
@@ -23,20 +19,20 @@ Content-Type: application/json
 }
 ###
  
-//Uppdatera produkt PUT
-PUT http://localhost:3000/products/1234567 HTTP / 1.1
+//Uppdaterar en produkt - titel och pris ändrat
+PUT http://localhost:3000/products/1234567 
 Content-Type: application/json
 
 {
 "id": "1234567",
     "Titel": "Där kräftorna sjunger lalallala",
     "Författare": "Delia Owens",
-    "Pris": 9189,
+    "Pris": 389,
     "image": "OnePlus5.png"
 }
 ###
 
-//Ta bort produkt- KLAR
+//Ta bort en produkt
 DELETE http://localhost:3000/products/1234567
 ###
  
