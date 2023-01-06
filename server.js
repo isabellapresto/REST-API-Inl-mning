@@ -51,7 +51,7 @@ app.put("/products/:id", bodyParser.json(), (req, res) => {
   });
  });
  
-// const fs = require("fs");
+const fs = require("fs");
  
 //spara function
 const save = () => {
@@ -66,7 +66,7 @@ const save = () => {
  );
 };
  
-//tar bort KLAR
+//DELETE - tar bort en produkt
 app.delete("/products/:id", (req, res) => {
  products = products.filter((product) => product.id !== req.params.id);
  save();
