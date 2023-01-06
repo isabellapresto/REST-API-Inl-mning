@@ -1,0 +1,33 @@
+//Testa end-points
+ 
+//Hela arrayen med böcker, id, författare, pris, img KLAR
+GET http://localhost:3000/products
+###
+ 
+//En spesefik produkt KLAR
+GET http://localhost:3000/products/8876220
+//hittar inte id data saknas
+###
+ 
+//Lägg till ny produkt KLAR
+POST  http://localhost:3000/products
+Content-Type: application/json
+ 
+//läggs till i json korrekt
+{
+ "id":"6789887", //id måste vara string
+ "Titel": "Ny bok",
+ "Författare": "Jhon Doe",
+ "Pris": 299,
+ "image": "OnePlus5.png"
+}
+###
+ 
+//Uppdatera produkt ?? Vad betyder detta?
+PUT http://localhost:3000/products/bhggg
+###
+ 
+//Ta bort produkt- ligger fortfarande kvar i json KLAR
+DELETE http://localhost:3000/products/9853099
+###
+ 
