@@ -19,37 +19,40 @@ app.get("/products", (req, res) => {
 app.get("/products/:id", (req, res) => {
  let findProduct = products.find((product) => product.id === (req.params.id));
  if (!findProduct) {
-   res.status(404).send("Data saknas");
+   res.status(404).send("Data saknas"); //bara här?
  } else {
    res.json(findProduct);
 }});
  
 //skapar ny produkt Create KLAR
 app.post("/products", bodyParser.json(), (req, res) => {
- products.push(req.body);
- save();
- res.json({
-   status: "success",
-   productInfo: req.body,
+  products.push(req.body);
+  save();
+  res.json({
+    status: "success",
+    productInfo: req.body,
+  });
  });
-});
+ //////////////////////////////PUT/////////////////////////////////////////////
+
+
  
-//uppdaterar Update
+//uppdaterar Update-bra
 app.put("/products/:id", bodyParser.json(), (req, res) => {
- products = products.map((product) => {
-   if (product.product === req.params.id) {
-     return req.body;
-   } else {
-     return product;
-   }
+  products = products.map((product) => {
+    if (product.id === req.params.id) {
+      return req.body;
+    } else {
+      return product;
+    }
+  });
+  save();
+  
+  res.json({
+    status: "success",
+    productInfo: req.body,
+  });
  });
- save();
- 
- res.json({
-   status: "success",
-   productInfo: req.body,
- });
-});
  
 const fs = require("fs");
  
@@ -66,7 +69,7 @@ const save = () => {
  );
 };
  
-//tar bort
+//tar bort KLAR
 app.delete("/products/:id", (req, res) => {
  products = products.filter((product) => product.id !== req.params.id);
  save();
@@ -78,38 +81,3 @@ app.delete("/products/:id", (req, res) => {
 });
  
  
-// app.delete("/products/:id", (req, res) => {
- 
-//     const { id } = rec.params;
- //     products = products.filter((product) => product.id !== id);
- //     res.send ("Bok med id ${id} raderad.")
-//   });
- 
- 
-/// old version
-// const express = require("express");
- 
-// const app = express();
- 
-// //hämtar alla produkter
-// app.get("/api/products", (rec, res) => {
-//  res.status(200).send("Produkter från json");
- 
-// //  fetch('/products.json')
-// // .then(res => res.json())
-// // .then(console.log);
- 
-// })
- 
-// //hämtar en produkt
-// app.get("/api/products/:id", (rec, res,  ) => {
-//  res.status(200).send("Här är en specifik produkt med id" + rec.params.id);
-// });
- 
-// app.post("/api/products", (rec, res,  ) => {
-//  res.status(201).json(rec.body);
-// });
- 
-// app.listen(3000,() => console.log ("Server is up!"));
- 
-// // fetch ('http://localhost:3000/api/products')
