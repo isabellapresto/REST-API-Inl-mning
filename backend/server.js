@@ -76,5 +76,7 @@ app.delete("/products/:id", (req, res) => {
    newLength: products.length,
  });
 });
+
+//syns detta 
  
  
