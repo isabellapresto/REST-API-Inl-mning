@@ -1,0 +1,37 @@
+// All books - Hämtr hela arrayen med alla böcker
+GET http://localhost:3000/products
+###
+ 
+//Reading now - Hämtar en spesifik bok - om inte produkten finns svarar APIét med 404
+GET http://localhost:3000/products/8765467
+###
+
+//Update rating - Uppdaterar en produkt - rating uppdaterad
+PUT http://localhost:3000/products/8765467 
+Content-Type: application/json
+
+{
+ "id":"8765467",
+    "Title": "Evelyn Hugos sju äkta män",
+    "Author": "Taylor Jenkins Reid",
+    "Rating": "5/5"
+}
+###
+
+//Add a new book - Lägger till en ny bok 
+POST  http://localhost:3000/products
+Content-Type: application/json
+ 
+{
+    "id":"nbcibfrv",
+    "Title": "ndeufb ijoiheUFW",
+    "Author": "NDIBIWE",
+    "Rating": "1/5"
+}
+###
+ 
+
+//Ta bort en produkt
+DELETE http://localhost:3000/products/nbcibfrv
+###
+ 
