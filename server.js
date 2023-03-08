@@ -19,7 +19,7 @@ app.get("/products", (req, res) => {
 app.get("/products/:id", (req, res) => {
  let findProduct = products.find((product) => product.id === (req.params.id));
  if (!findProduct) {
-   res.status(404).send("Data saknas"); //bara här?
+   res.status(404).send("Data saknas");
  } else {
    res.json(findProduct);
 }});
